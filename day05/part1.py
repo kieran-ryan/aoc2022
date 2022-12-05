@@ -5,7 +5,7 @@ INPUT_FILE = Path(__file__).resolve().parent / "input.txt"
 INPUT = open(INPUT_FILE).read()
 
 
-def compute(input_):
+def compute(input_) -> str:
     stacks = []
     instructions = []
 
@@ -31,11 +31,15 @@ def compute(input_):
     # Pop a number of values from one stack and push to another
     for instruction in instructions:
         num, origin, destination = instruction
-        for i in range(int(num)):
-            val = stacks_dict[origin].pop()
-            stacks_dict[destination].append(val)
+        move(int(num), origin, destination, stacks_dict)
 
     return "".join([stacks_dict[key][-1] for key in stacks_dict.keys()])
+
+
+def move(num: int, origin: str, destination: str, stacks: dict) -> None:
+    for i in range(num):
+        val = stacks[origin].pop()
+        stacks[destination].append(val)
 
 
 if __name__ == "__main__":
