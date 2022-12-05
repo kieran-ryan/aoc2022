@@ -15,10 +15,7 @@ def compute(input_):
 
 
 def priority(character):
-    if character.islower():
-        return ord(character) - 96
-    else:
-        return ord(character) - 38
+    return ord(character) - (96 if character.islower() else 38)
 
 
 if __name__ == "__main__":
